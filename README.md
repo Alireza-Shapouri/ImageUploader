@@ -1,61 +1,83 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Laravel Polymorphic Image Upload Package Example
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+This is a Laravel project demonstrating how to use a custom reusable **polymorphic image upload package** to attach images to various models like `Product` and `User`.
 
-## About Laravel
+## 📦 About the Package
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+The custom package located at:
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+packages/MyProjectVendor/laravel-polymorphic-images
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+Includes:
 
-## Learning Laravel
+- A reusable `Image` model with a polymorphic relationship.
+- An `ImageService` to handle storing, retrieving, and deleting images.
+- A migration for creating the `images` table.
+- Logic that can be used across any Eloquent model.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## 🛠 Features
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+- Attach uploaded images to any model using a polymorphic relation.
+- Retrieve all images associated with a model.
+- Delete specific images.
+- Store image paths in database, files on disk (`public`).
+- Fully service-based logic for cleaner controller code.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## 🚀 API Routes
 
-## Laravel Sponsors
+### 📁 Product Endpoints
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+| Method | Endpoint                      | Description                      |
+|--------|-------------------------------|----------------------------------|
+| POST   | `/products`                   | Create a product with image      |
+| GET    | `/products/{product}/images`  | Get all images for a product     |
+| POST   | `/products/{product}/images`  | Add image to existing product    |
+| DELETE | `/products/images/{image}`    | Delete specific product image    |
 
-### Premium Partners
+### 👤 User Endpoints
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+| Method | Endpoint                    | Description                  |
+|--------|-----------------------------|------------------------------|
+| GET    | `/users`                    | Get list of users            |
+| POST   | `/users`                    | Create user with image       |
+| GET    | `/users/{user}/images`      | Get images associated to user|
 
-## Contributing
+## 🧩 Technologies Used
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+- Laravel 12+
+- PHP 8.4.10 
+- Polymorphic Eloquent Relationships
+- Custom Local Packages (`packages/` structure)
+- Laravel Filesystem (for file storage)
 
-## Code of Conduct
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+## 📸 Image Storage
 
-## Security Vulnerabilities
+Images are stored under:
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+storage/app/public/images/
 
-## License
+To make them accessible publicly, run:
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+```bash
+php artisan storage:link
+```
+Then images can be accessed via:
+
+/storage/images/filename.jpg
+
+
+Installation
+Clone the repository.
+
+Run composer install
+
+Set up .env and database.
+
+Run
+
+You're ready to test the API!
+
+
+🤝 License
+MIT — use it freely, modify it, improve it!
