@@ -1,0 +1,22 @@
+{
+    "name": "myprojectvendor/laravel-polymorphic-images",
+    "description": "Laravel package for polymorphic image upload",
+    "version": "1.0.0",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "MyProjectVendor\\PolymorphicImages\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "MyProjectVendor\\PolymorphicImages\\ImageServiceProvider"
+            ]
+        }
+    },
+    "require": {
+        "illuminate/support": "^12.0"
+    }
+}
